@@ -15,68 +15,17 @@ pipeline {
 
     }
 
-/*
-    stages {
-
-        stage('Download from S3') {
-
-            steps {
-
-                withCredentials([[
-
-                    $class: 'AmazonWebServicesCredentialsBinding',
-
-                    credentialsId: 'aws-credentials-id'
-
-                ]]) {
-
-                    bat '''
-
-                        aws s3 ls
-
-                        aws s3 cp "%S3_FILE1%" "C:\\Samp"
-                        aws s3 cp "%S3_FILE2%" "C:\\Samp"
-                        
-
-                    '''
-
-                }
-
-            }
-
+stage('Upload to S3') {
+    steps {
+        withCredentials([[
+            $class: 'AmazonWebServicesCredentialsBinding',
+            credentialsId: 'aws-credentials-id'
+        ]]) {
+            bat '''
+                aws s3 cp ""C:\Samp\ChannelModel 2 2.pptx"" "s3://test1-bucket-samp/test1-bucket/"
+            '''
         }
-
-    } */
-
-stages {
-
-        stage('Upload to s3') {
-
-            steps {
-
-                withCredentials([[
-
-                    $class: 'AmazonWebServicesCredentialsBinding',
-
-                    credentialsId: 'aws-credentials-id'
-
-                ]]) {
-
-                    bat '''
-
-                        aws s3 ls
-
-                        aws s3 cp "C:\\Samp\\ChannelModel 2 2.pptx" "s3://test1-bucket-samp/test1-bucket"
-                        
-
-                    '''
-
-                }
-
-            }
-
-        }
-
     }
+}
 
 }

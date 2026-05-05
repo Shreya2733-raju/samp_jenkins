@@ -33,7 +33,7 @@ pipeline {
 
                         aws s3 ls
 
-                        aws s3 cp "%S3_FILE1% %S3_FILE2%" "C:\\Samp"
+                        aws s3 cp "%S3_FILE1%" "%S3_FILE2%" "C:\\Samp"
                         
 
                     '''

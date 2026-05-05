@@ -1,0 +1,49 @@
+pipeline {
+
+    agent any
+ 
+    environment {
+
+        AWS_DEFAULT_REGION = 'eu-central-1'
+
+        S3_BUCKET = 'test1-bucket-samp'
+
+        S3_FILE1 = 's3://test1-bucket-samp/test1-bucket/5G_NR_PRACH 1.pptx'
+        S3_FILE2 = 's3://test1-bucket-samp/test1-bucket/ChannelModel 2 2.pptx'
+
+        LOCAL_FILE = 'file.zip'
+
+    }
+ 
+    stages {
+
+        stage('Download from S3') {
+
+            steps {
+
+                withCredentials([[
+
+                    $class: 'AmazonWebServicesCredentialsBinding',
+
+                    credentialsId: 'aws-credentials-id'
+
+                ]]) {
+
+                    bat '''
+
+                        aws s3 ls
+
+                        aws s3 cp S3_FILE1 C:\\Samp
+                        aws s3 cp S3_FILE2 C:\\Samp
+
+                    '''
+
+                }
+
+            }
+
+        }
+
+    }
+
+}

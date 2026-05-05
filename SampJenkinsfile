@@ -22,7 +22,7 @@ stage('Upload to S3') {
             credentialsId: 'aws-credentials-id'
         ]]) {
             bat '''
-                aws s3 cp ""C:\Samp\ChannelModel 2 2.pptx"" "s3://test1-bucket-samp/test1-bucket/"
+                aws s3 cp ""C:\\Samp\\ChannelModel 2 2.pptx"" "s3://test1-bucket-samp/test1-bucket/"
             '''
         }
     }
